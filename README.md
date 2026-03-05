@@ -90,7 +90,7 @@ InvestmentAI/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/InvestmentAI.git
+git clone https://github.com/archerdodson/InvestmentAI.git
 cd InvestmentAI
 ```
 
