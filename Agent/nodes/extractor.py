@@ -25,21 +25,25 @@ Return a JSON array of deal objects. Each object must have these fields:
   "target_company": "string",
   "acquirer_company": "string",
   "deal_value": "string (e.g., '$2.5B' or 'Undisclosed')",
-  "sector": "one of: healthcare, semiconductors, clean-energy, industrials, fintech, consumer, aerospace, cybersecurity, agritech, other",
+  "sector": "MUST be one of: healthcare, semiconductors, clean-energy, industrials, fintech, consumer, aerospace, cybersecurity, agritech — pick the closest match, never use 'other'",
   "deal_type": "string",
   "strategic_rationale": "string",
-  "published_date": "string (ISO format if possible)"
+  "published_date": "string (YYYY-MM-DD). Use the article's actual publication date. If not clearly stated in the article, use the search_date provided below."
 }
 
 If no deals found, return: []
 """
 
 
-def _extract_deals_from_article(llm: ChatOpenAI, article: Article) -> list[Deal]:
+def _extract_deals_from_article(llm: ChatOpenAI, article: Article, search_date: str = "") -> list[Deal]:
     """Use GPT-4o to extract deals from a single article."""
+    date_hint = ""
+    if search_date:
+        date_hint = f"\nSearch Date (use as published_date if no date is visible in the article): {search_date}\n"
+
     messages = [
         SystemMessage(content=EXTRACTION_PROMPT),
-        HumanMessage(content=f"Article Title: {article.title}\nSource: {article.source}\n\nArticle Content:\n{article.content}"),
+        HumanMessage(content=f"Article Title: {article.title}\nSource: {article.source}\n{date_hint}\nArticle Content:\n{article.content}"),
     ]
 
     try:
@@ -91,16 +95,18 @@ def extractor_node(state: InvestmentRadarState) -> dict:
         return {"extracted_deals": []}
 
     llm = ChatOpenAI(
-        model="gpt-4o",
+        model="gpt-5",
         temperature=0,
         api_key=OPENAI_API_KEY,
     )
 
     all_deals: list[Deal] = []
 
+    search_date = state.get("run_date_start", "")
+
     for i, article in enumerate(articles, 1):
         print(f"  [{i}/{len(articles)}] Extracting from: {article.title[:60]}...")
-        deals = _extract_deals_from_article(llm, article)
+        deals = _extract_deals_from_article(llm, article, search_date)
         if deals:
             for d in deals:
                 print(f"    -> DEAL: {d.acquirer_company} acquiring {d.target_company} ({d.deal_value}) [{d.sector}]")

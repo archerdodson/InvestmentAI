@@ -11,28 +11,24 @@ from state import Deal, ScoredDeal, InvestmentRadarState
 
 SCORING_PROMPT = """You are an M&A investment thesis matcher at a large investment bank. Your job is to score how well a deal aligns with the firm's investment thesis.
 
-INVESTMENT THESIS (summary):
-The firm focuses on M&A deals involving companies that automate high-volume, regulated financial workflows. Key criteria:
-1. SECTOR ALIGNMENT — Target operates in financial services, fintech, payments, banking technology, insurance technology, regulatory technology, or adjacent regulated industries.
-2. DEAL TYPE FIT — The deal structure aligns with recognized M&A rationales: Horizontal Integration, Vertical Integration, Market Extension, Product Extension, or Transformative/Platform deals.
-3. STRATEGIC RATIONALE STRENGTH — The rationale is clear, specific, and defensible. It creates measurable value (cost synergies, market share, technology acquisition, regulatory capability).
-4. FINANCIAL WORKFLOW RELEVANCE — The target company automates, streamlines, or enhances high-volume regulated workflows (payments processing, compliance monitoring, audit automation, fraud detection, KYC/AML, tax filing, loan origination, etc.).
-
 SCORING INSTRUCTIONS:
+- Read the INVESTMENT THESIS provided below carefully.
 - Score each criterion from 0.0 to 1.0 (two decimal places).
 - Provide a brief reasoning for each score.
 - Calculate the overall score as the weighted average:
-  - Sector Alignment: 25%
-  - Deal Type Fit: 20%
-  - Strategic Rationale: 25%
-  - Financial Workflow Relevance: 30%
+  - Thesis Alignment: 35% — How well does this deal match what the thesis is looking for?
+  - Deal Quality: 25% — Is the deal structure sound? Clear rationale, defensible value creation?
+  - Strategic Value: 25% — Does the deal create measurable strategic value (synergies, market share, tech acquisition)?
+  - Sector Relevance: 15% — Does the target operate in a sector the thesis cares about?
+
+IMPORTANT: If the thesis says to consider all deals or any sector, score Thesis Alignment and Sector Relevance generously (0.7+) for any legitimate M&A deal. Only score low if a deal clearly contradicts the thesis.
 
 Return a JSON object:
 {
-  "sector_alignment": {"score": 0.0, "reasoning": "..."},
-  "deal_type_fit": {"score": 0.0, "reasoning": "..."},
-  "strategic_rationale": {"score": 0.0, "reasoning": "..."},
-  "financial_workflow_relevance": {"score": 0.0, "reasoning": "..."},
+  "thesis_alignment": {"score": 0.0, "reasoning": "..."},
+  "deal_quality": {"score": 0.0, "reasoning": "..."},
+  "strategic_value": {"score": 0.0, "reasoning": "..."},
+  "sector_relevance": {"score": 0.0, "reasoning": "..."},
   "overall_score": 0.0,
   "overall_reasoning": "2-3 sentence summary of why this deal does or does not fit the thesis"
 }
@@ -42,7 +38,7 @@ Return a JSON object:
 def _score_deal(llm: ChatOpenAI, deal: Deal, thesis: str) -> ScoredDeal:
     """Score a single deal against the thesis."""
     messages = [
-        SystemMessage(content=SCORING_PROMPT + f"\n\nADDITIONAL THESIS CONTEXT:\n{thesis[:3000]}"),
+        SystemMessage(content=SCORING_PROMPT + f"\n\nINVESTMENT THESIS:\n{thesis[:3000]}"),
         HumanMessage(content=(
             f"DEAL TO SCORE:\n"
             f"Acquirer: {deal.acquirer_company}\n"
@@ -74,7 +70,7 @@ def _score_deal(llm: ChatOpenAI, deal: Deal, thesis: str) -> ScoredDeal:
         overall_score = max(0.0, min(1.0, overall_score))
 
         criteria_scores = {}
-        for key in ["sector_alignment", "deal_type_fit", "strategic_rationale", "financial_workflow_relevance"]:
+        for key in ["thesis_alignment", "deal_quality", "strategic_value", "sector_relevance"]:
             if key in result and isinstance(result[key], dict):
                 criteria_scores[key] = {
                     "score": float(result[key].get("score", 0.0)),
@@ -121,7 +117,7 @@ def matcher_node(state: InvestmentRadarState) -> dict:
         return {"scored_deals": []}
 
     llm = ChatOpenAI(
-        model="gpt-4o",
+        model="gpt-5",
         temperature=0,
         api_key=OPENAI_API_KEY,
     )

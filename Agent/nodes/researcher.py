@@ -119,7 +119,7 @@ def researcher_node(state: InvestmentRadarState) -> dict:
 
     tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
     llm = ChatOpenAI(
-        model="gpt-4o",
+        model="gpt-5",
         temperature=0,
         api_key=OPENAI_API_KEY,
     )

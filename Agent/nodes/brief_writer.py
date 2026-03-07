@@ -148,7 +148,7 @@ def brief_writer_node(state: InvestmentRadarState) -> dict:
         return {"briefs": []}
 
     llm = ChatOpenAI(
-        model="gpt-4o",
+        model="gpt-5",
         temperature=0.2,  # slight creativity for writing
         api_key=OPENAI_API_KEY,
     )

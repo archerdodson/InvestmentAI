@@ -2,7 +2,8 @@
 
 import json
 import os
-from datetime import datetime, timezone
+import re
+from datetime import datetime, timezone, timedelta
 
 from state import InvestmentRadarState, ScoredDeal, Brief
 
@@ -31,6 +32,21 @@ def _write_json(filepath: str, data: list) -> None:
         json.dump(data, f, indent=2, ensure_ascii=False, default=str)
 
 
+def _validate_date(date_str: str, max_age_days: int = 90) -> str:
+    """Return date_str if it's a valid recent date, otherwise return today's date."""
+    today = datetime.now(timezone.utc).date()
+    try:
+        parsed = datetime.strptime(date_str.strip()[:10], "%Y-%m-%d").date()
+        # Reject dates more than max_age_days old or in the future
+        if parsed > today + timedelta(days=1):
+            return today.strftime("%Y-%m-%d")
+        if (today - parsed).days > max_age_days:
+            return today.strftime("%Y-%m-%d")
+        return parsed.strftime("%Y-%m-%d")
+    except (ValueError, AttributeError):
+        return today.strftime("%Y-%m-%d")
+
+
 def _deal_type_to_news_type(deal_type: str) -> str:
     """Map agent deal_type to UI NewsItem type."""
     dt = deal_type.lower()
@@ -41,6 +57,24 @@ def _deal_type_to_news_type(deal_type: str) -> str:
     if "ipo" in dt:
         return "ipo"
     return "deal"
+
+
+def _build_summary(deal) -> str:
+    """Build a one-line deal summary, avoiding 'Unknown' or empty values."""
+    rationale = deal.strategic_rationale or ""
+    if rationale and rationale.lower() != "unknown":
+        return rationale
+    if deal.raw_content and len(deal.raw_content) > 20:
+        # Take first sentence or first 200 chars
+        first = deal.raw_content.split(". ")[0]
+        return (first[:200] + "...") if len(first) > 200 else first + "."
+    # Construct from deal fields
+    parts = [f"{deal.acquirer_company} acquires {deal.target_company}"]
+    if deal.deal_value and deal.deal_value != "Undisclosed":
+        parts[0] += f" for {deal.deal_value}"
+    if deal.sector:
+        parts.append(f"Deal in the {deal.sector} sector.")
+    return " ".join(parts)
 
 
 def _scored_deal_to_news_item(sd: ScoredDeal, run_id: str, index: int) -> dict:
@@ -57,11 +91,11 @@ def _scored_deal_to_news_item(sd: ScoredDeal, run_id: str, index: int) -> dict:
         "run_id": run_id,
         "title": title,
         "source": deal.source_name or "Unknown",
-        "time": deal.published_date or datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "time": _validate_date(deal.published_date) if deal.published_date else datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "type": _deal_type_to_news_type(deal.deal_type),
         "amount": deal.deal_value if deal.deal_value != "Undisclosed" else None,
         "companies": [c for c in [deal.acquirer_company, deal.target_company] if c],
-        "summary": deal.strategic_rationale or deal.raw_content[:200] if deal.raw_content else "",
+        "summary": _build_summary(deal),
         "sector_id": deal.sector or "",
         "score": sd.score,
         "verdict": sd.verdict,
@@ -164,7 +198,7 @@ def file_output_node(state: InvestmentRadarState) -> dict:
     existing_briefs = _read_json(briefs_path)
     existing_runs = _read_json(runs_path)
 
-    updated_deals = _dedup_by_key(existing_deals, new_deals, "id")
+    updated_deals = _dedup_by_key(existing_deals, new_deals, "source_url")
     updated_briefs = _dedup_by_key(existing_briefs, new_briefs, "brief_id")
 
     # --- Build run entry ---

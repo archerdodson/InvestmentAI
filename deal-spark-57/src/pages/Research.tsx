@@ -9,9 +9,12 @@ import {
   Square,
   Terminal,
   Search,
+  TrendingUp,
+  ExternalLink,
 } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
+import BriefDialog from "@/components/BriefDialog";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -20,7 +23,8 @@ import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { useAgentRuns, useRefreshAgentData } from "@/hooks/useAgentData";
+import { useAgentDeals, useAgentBriefs, useAgentRuns, useRefreshAgentData } from "@/hooks/useAgentData";
+import type { AgentBrief } from "@/types/agent";
 
 const Research = () => {
   const [date, setDate] = useState<Date | undefined>();
@@ -31,7 +35,11 @@ const Research = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  const [selectedBrief, setSelectedBrief] = useState<AgentBrief | null>(null);
+
   const { data: runs = [] } = useAgentRuns();
+  const { data: allDeals = [] } = useAgentDeals();
+  const { data: allBriefs = [] } = useAgentBriefs();
   const refreshData = useRefreshAgentData();
 
   const scrollToBottom = useCallback(() => {
@@ -246,6 +254,88 @@ const Research = () => {
             </Card>
           )}
 
+          {/* Discovered Deals */}
+          {allDeals.length > 0 && (
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <TrendingUp className="h-5 w-5 text-muted-foreground" />
+                  Discovered Deals
+                  <Badge variant="secondary" className="ml-auto font-mono text-xs">
+                    {allDeals.length} total
+                  </Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {[...allDeals].reverse().map((deal) => {
+                    const brief = allBriefs.find((b) => b.brief_id === deal.brief_id);
+                    return (
+                      <div
+                        key={deal.id}
+                        className="flex items-center justify-between rounded-lg border border-border p-3"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <p className="text-sm font-medium text-foreground truncate">
+                              {deal.title}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-xs text-muted-foreground">{deal.source}</span>
+                            <span className="text-xs text-muted-foreground">{deal.time}</span>
+                            <Badge variant="outline" className="text-xs">
+                              {deal.sector_id}
+                            </Badge>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 ml-3 shrink-0">
+                          {deal.amount && (
+                            <Badge variant="secondary" className="font-mono text-xs">
+                              {deal.amount}
+                            </Badge>
+                          )}
+                          <Badge
+                            className={cn(
+                              "border-0 text-xs",
+                              deal.verdict === "Strong"
+                                ? "bg-success/10 text-success"
+                                : deal.verdict === "Moderate"
+                                ? "bg-warning/10 text-warning"
+                                : "bg-muted text-muted-foreground"
+                            )}
+                          >
+                            {deal.score.toFixed(2)} {deal.verdict}
+                          </Badge>
+                          {brief && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setSelectedBrief(brief)}
+                            >
+                              <FileText className="mr-1 h-3 w-3" />
+                              Brief
+                            </Button>
+                          )}
+                          {deal.source_url && (
+                            <a
+                              href={deal.source_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground hover:text-foreground"
+                            >
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Past Runs */}
           <Card>
             <CardHeader className="pb-3">
@@ -313,6 +403,12 @@ const Research = () => {
           </Card>
         </div>
       </main>
+
+      <BriefDialog
+        brief={selectedBrief}
+        open={!!selectedBrief}
+        onOpenChange={(open) => !open && setSelectedBrief(null)}
+      />
     </div>
   );
 };

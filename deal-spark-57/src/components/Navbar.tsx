@@ -6,6 +6,7 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Discovery", path: "/" },
+    { label: "Research", path: "/research" },
   ];
 
   return (

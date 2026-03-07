@@ -1,9 +1,24 @@
-import { Eye, TrendingUp, Star, ArrowRight } from "lucide-react";
+import { Newspaper, Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Sector } from "@/data/sectors";
 
-const SectorCard = ({ sector }: { sector: Sector }) => {
+function isRecentDeal(dateStr: string | undefined, maxDays = 2): boolean {
+  if (!dateStr) return false;
+  const dealDate = new Date(dateStr + "T00:00:00");
+  const now = new Date();
+  const diffMs = now.getTime() - dealDate.getTime();
+  return diffMs >= 0 && diffMs <= maxDays * 24 * 60 * 60 * 1000;
+}
+
+function formatDealDate(dateStr: string): string {
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+const SectorCard = ({ sector, latestDealDate }: { sector: Sector; latestDealDate?: string }) => {
   const Icon = sector.icon;
+  const hasRecentDeal = isRecentDeal(latestDealDate);
+  const updatedLabel = latestDealDate ? formatDealDate(latestDealDate) : sector.updatedAt;
 
   return (
     <Link
@@ -13,14 +28,10 @@ const SectorCard = ({ sector }: { sector: Sector }) => {
       {/* Top row */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 rounded-md bg-badge-views px-2 py-1">
-            <Eye className="h-3 w-3 text-badge-views-foreground" />
-            <span className="text-xs font-medium text-badge-views-foreground">{sector.views} views</span>
-          </div>
-          {sector.trending && (
+          {hasRecentDeal && (
             <div className="flex items-center gap-1 rounded-md bg-trending px-2 py-1">
-              <TrendingUp className="h-3 w-3 text-trending-foreground" />
-              <span className="text-xs font-semibold text-trending-foreground">Trending</span>
+              <Newspaper className="h-3 w-3 text-trending-foreground" />
+              <span className="text-xs font-semibold text-trending-foreground">Recent Deals</span>
             </div>
           )}
         </div>
@@ -47,7 +58,7 @@ const SectorCard = ({ sector }: { sector: Sector }) => {
         <div>
           <div className="flex items-center gap-1.5">
             <div className="h-2 w-2 rounded-full bg-success animate-pulse-dot" />
-            <span className="text-xs text-primary font-medium">Updated {sector.updatedAt}</span>
+            <span className="text-xs text-primary font-medium">Updated {updatedLabel}</span>
           </div>
           <div className="mt-2 flex items-center gap-2">
             <span className="text-sm font-semibold text-card-foreground">{sector.companyCount} companies</span>

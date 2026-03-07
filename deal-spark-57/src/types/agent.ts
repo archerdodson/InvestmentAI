@@ -48,7 +48,6 @@ export interface AgentBrief {
 export interface AgentRun {
   run_id: string;
   timestamp: string;
-  sector_id: string;
   date_range_start: string;
   date_range_end: string;
   deals_found: number;

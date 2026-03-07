@@ -1,1 +1,182 @@
-[]
+[
+  {
+    "id": "2026-03-06T16-31-32-deal-0",
+    "run_id": "2026-03-06T16-31-32",
+    "title": "VisionWave Acquisition C.M. Composite Materials Ltd.",
+    "source": "stocktitan.net",
+    "time": "2026-03-06",
+    "type": "ma",
+    "amount": null,
+    "companies": [
+      "VisionWave",
+      "C.M. Composite Materials Ltd."
+    ],
+    "summary": "Transformative / Platform",
+    "sector_id": "aerospace",
+    "score": 0.32,
+    "verdict": "Weak",
+    "source_url": "https://www.stocktitan.net/news/VWAV/c-m-advises-vision-wave-of-joint-venture-initiative-in-india-with-v8pf6kexgbu1.html",
+    "has_brief": false,
+    "brief_id": null
+  },
+  {
+    "id": "2026-03-06T16-31-32-deal-1",
+    "run_id": "2026-03-06T16-31-32",
+    "title": "Oura Acquisition Doublepoint",
+    "source": "techcrunch.com",
+    "time": "2026-03-05",
+    "type": "ma",
+    "amount": null,
+    "companies": [
+      "Oura",
+      "Doublepoint"
+    ],
+    "summary": "Product Extension",
+    "sector_id": "consumer",
+    "score": 0.28,
+    "verdict": "Weak",
+    "source_url": "https://techcrunch.com/2026/03/05/oura-acquires-doublepoint-a-startup-that-specializes-in-gesture-recognition-technology/",
+    "has_brief": false,
+    "brief_id": null
+  },
+  {
+    "id": "2026-03-06T19-28-35-deal-0",
+    "run_id": "2026-03-06T19-28-35",
+    "title": "USA Rare Earth Acquisition Round Top in $73M Deal",
+    "source": "northernminer.com",
+    "time": "2026-03-05",
+    "type": "ma",
+    "amount": "$73M",
+    "companies": [
+      "USA Rare Earth",
+      "Round Top"
+    ],
+    "summary": "USA Rare Earth acquires final stake in Round Top rare earth deposit for $73M, securing domestic critical minerals supply.",
+    "sector_id": "industrials",
+    "score": 0.63,
+    "verdict": "Moderate",
+    "source_url": "https://www.northernminer.com/news/interactive-infographic-25-years-of-global-mining-ma/1003888540/",
+    "has_brief": true,
+    "brief_id": "2026-03-06T19-28-35-brief-0"
+  },
+  {
+    "id": "2026-03-07T00-25-03-deal-0",
+    "run_id": "2026-03-07T00-25-03",
+    "title": "Life Electric Vehicles Holdings Acquisition Rad Power Bikes in $13.2M Deal",
+    "source": "techcrunch.com",
+    "time": "2026-03-06",
+    "type": "ma",
+    "amount": "$13.2M",
+    "companies": [
+      "Life Electric Vehicles Holdings",
+      "Rad Power Bikes"
+    ],
+    "summary": "Transformative / Platform",
+    "sector_id": "consumer",
+    "score": 0.8,
+    "verdict": "Strong",
+    "source_url": "https://techcrunch.com/2026/03/06/life-ev-officially-owns-rad-power-bikes-now/",
+    "has_brief": true,
+    "brief_id": "2026-03-07T00-25-03-brief-0"
+  },
+  {
+    "id": "2026-03-07T00-25-03-deal-1",
+    "run_id": "2026-03-07T00-25-03",
+    "title": "Parex Resources Acquisition Frontera Energy's Colombia upstream assets in $500M Deal",
+    "source": "worldoil.com",
+    "time": "2026-03-06",
+    "type": "ma",
+    "amount": "$500M",
+    "companies": [
+      "Parex Resources",
+      "Frontera Energy's Colombia upstream assets"
+    ],
+    "summary": "Horizontal Integration",
+    "sector_id": "clean-energy",
+    "score": 0.77,
+    "verdict": "Moderate",
+    "source_url": "https://worldoil.com/news/2026/3/6/parex-makes-500-million-bid-for-frontera-s-colombia-upstream-assets/",
+    "has_brief": true,
+    "brief_id": "2026-03-07T00-25-03-brief-1"
+  },
+  {
+    "id": "2026-03-07T00-25-03-deal-3",
+    "run_id": "2026-03-07T00-25-03",
+    "title": "Consortium led by Blackrock's Global Infrastructure Partners and EQT Infrastructure VI fund Acquisition AES",
+    "source": "law360.com",
+    "time": "2026-03-06",
+    "type": "ma",
+    "amount": null,
+    "companies": [
+      "Consortium led by Blackrock's Global Infrastructure Partners and EQT Infrastructure VI fund",
+      "AES"
+    ],
+    "summary": "Blackrock GIP and EQT Infrastructure consortium acquires AES in major clean energy infrastructure deal.",
+    "sector_id": "clean-energy",
+    "score": 0.65,
+    "verdict": "Moderate",
+    "source_url": "https://www.law360.com/insurance/articles/2449994?utm_source=rss&utm_medium=rss&utm_campaign=section",
+    "has_brief": true,
+    "brief_id": "2026-03-07T00-25-03-brief-3"
+  },
+  {
+    "id": "2026-03-07T01-22-15-deal-2",
+    "run_id": "2026-03-07T01-22-15",
+    "title": "MyFitnessPal Acquisition Cal AI",
+    "source": "techcrunch.com",
+    "time": "2026-03-06",
+    "type": "ma",
+    "amount": null,
+    "companies": [
+      "MyFitnessPal",
+      "Cal AI"
+    ],
+    "summary": "Product Extension",
+    "sector_id": "consumer",
+    "score": 0.77,
+    "verdict": "Moderate",
+    "source_url": "https://techcrunch.com/podcast/anthropic-vs-the-pentagon-the-saaspocalypse-and-why-competitions-is-good-actually/",
+    "has_brief": true,
+    "brief_id": "2026-03-07T01-22-15-brief-2"
+  },
+  {
+    "id": "2026-03-07T01-24-50-deal-0",
+    "run_id": "2026-03-07T01-24-50",
+    "title": "NorthBay Health Acquisition Providence Queen of the Valley Medical Center",
+    "source": "modernhealthcare.com",
+    "time": "2026-03-06",
+    "type": "ma",
+    "amount": null,
+    "companies": [
+      "NorthBay Health",
+      "Providence Queen of the Valley Medical Center"
+    ],
+    "summary": "Market Extension",
+    "sector_id": "healthcare",
+    "score": 0.81,
+    "verdict": "Strong",
+    "source_url": "https://www.modernhealthcare.com/mergers-acquisitions/mh-providence-northbay-health-hospital-sale/",
+    "has_brief": true,
+    "brief_id": "2026-03-07T01-24-50-brief-0"
+  },
+  {
+    "id": "2026-03-07T05-02-23-deal-2",
+    "run_id": "2026-03-07T05-02-23",
+    "title": "EPR Properties Carve-Out / Spin-Off Seven regional amusement parks of Six Flags Entertainment in $331M Deal",
+    "source": "wsj.com",
+    "time": "2026-03-06",
+    "type": "deal",
+    "amount": "$331M",
+    "companies": [
+      "EPR Properties",
+      "Seven regional amusement parks of Six Flags Entertainment"
+    ],
+    "summary": "This copy is for your personal, non-commercial use only.",
+    "sector_id": "consumer",
+    "score": 0.75,
+    "verdict": "Moderate",
+    "source_url": "https://www.wsj.com/business/health-care-roundup-market-talk-1d6762c6?gaa_at=eafs&gaa_n=AWEtsqckv83TV73cex5xmdtoZV5HQYERhBEGT1Q_RDQyLmurTZKUbD_wORfX&gaa_ts=69aaebb0&gaa_sig=9rFTvvjAlyCOMF2AagPWBqKHLReWqq2LOnbTTSrULaFUqNdkFxiJ-leG1eXif1uH4_3gXOK7Gnh2e29s8utZlA%3D%3D",
+    "has_brief": true,
+    "brief_id": "2026-03-07T05-02-23-brief-2"
+  }
+]

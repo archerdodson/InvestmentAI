@@ -1,9 +1,26 @@
+import { useMemo } from "react";
 import { Search } from "lucide-react";
 import SectorCard from "@/components/SectorCard";
 import Navbar from "@/components/Navbar";
 import { sectors } from "@/data/sectors";
+import { useAgentDeals } from "@/hooks/useAgentData";
 
 const Index = () => {
+  const { data: allDeals = [] } = useAgentDeals();
+
+  // Compute the latest deal date per sector
+  const latestDealBySector = useMemo(() => {
+    const map: Record<string, string> = {};
+    for (const deal of allDeals) {
+      const sid = deal.sector_id;
+      if (!sid || !deal.time) continue;
+      if (!map[sid] || deal.time > map[sid]) {
+        map[sid] = deal.time;
+      }
+    }
+    return map;
+  }, [allDeals]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -32,7 +49,7 @@ const Index = () => {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map((sector, idx) => (
             <div key={sector.id} className="animate-fade-in" style={{ animationDelay: `${idx * 60}ms` }}>
-              <SectorCard sector={sector} />
+              <SectorCard sector={sector} latestDealDate={latestDealBySector[sector.id]} />
             </div>
           ))}
         </div>

@@ -1,12 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, TrendingUp, Building2, Newspaper, Presentation, Search } from "lucide-react";
+import { ArrowLeft, TrendingUp, Building2, Newspaper, Presentation } from "lucide-react";
 import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import MoversTable from "@/components/MoversTable";
 import NewsFeed from "@/components/NewsFeed";
 import Top20Table from "@/components/Top20Table";
 import DirectorBriefing from "@/components/DirectorBriefing";
-import ResearchTab from "@/components/ResearchTab";
 import { sectors } from "@/data/sectors";
 import { getSectorData } from "@/data/sectorData";
 import { useAgentDeals, useAgentBriefs } from "@/hooks/useAgentData";
@@ -17,7 +16,6 @@ const tabs = [
   { id: "news", label: "Fresh Deals & M&A", icon: Newspaper },
   { id: "top20", label: "Top 20 Companies", icon: Building2 },
   { id: "director", label: "Present to Director", icon: Presentation },
-  { id: "research", label: "Research", icon: Search },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -120,7 +118,6 @@ const SectorDetail = () => {
           {activeTab === "director" && (
             <DirectorBriefing briefing={sectorData.directorBriefing} agentBriefs={agentBriefs} />
           )}
-          {activeTab === "research" && <ResearchTab sectorId={sectorId || ""} />}
         </div>
       </main>
     </div>

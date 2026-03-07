@@ -14,27 +14,27 @@ TINYFISH_API_KEY = os.getenv("Tinyfish", "").strip().strip('"')
 SCORE_THRESHOLD = 0.70  # minimum score to trigger researcher + brief writer
 
 # ── Tavily Settings (conservative — max 3 calls) ───────────────────────────
-TAVILY_MAX_RESULTS = 5
+TAVILY_MAX_RESULTS = 10
 TAVILY_SEARCH_QUERIES = [
     {
         "query": "mergers acquisitions announced today",
         "topic": "news",
         "time_range": "day",
-        "max_results": 5,
+        "max_results": 10,
     },
     {
         "query": "startup acquisition deal",
         "topic": "news",
         "time_range": "day",
         "include_domains": ["techcrunch.com", "crunchbase.com"],
-        "max_results": 5,
+        "max_results": 10,
     },
     {
         "query": "M&A deal closed",
         "topic": "news",
         "time_range": "day",
         "include_domains": ["reuters.com", "bloomberg.com"],
-        "max_results": 5,
+        "max_results": 10,
     },
 ]
 

@@ -32,10 +32,10 @@ const semiMovers: Company[] = [
 ];
 
 const semiNews: NewsItem[] = [
-  { id: "s1", title: "NVIDIA Acquires Run:ai for $700M to Bolster AI Orchestration", source: "Bloomberg", time: "3h ago", type: "ma", amount: "$700M", companies: ["NVIDIA", "Run:ai"], summary: "NVIDIA acquired Israeli AI infrastructure startup Run:ai, adding GPU orchestration capabilities to its data center portfolio." },
-  { id: "s2", title: "Intel Foundry Services Secures $8.5B CHIPS Act Award", source: "Reuters", time: "5h ago", type: "deal", amount: "$8.5B", companies: ["Intel"], summary: "Intel received the largest CHIPS Act award to date for expanding domestic chip manufacturing in Arizona and Ohio." },
-  { id: "s3", title: "Broadcom Completes VMware Integration, Eyes $40B Revenue", source: "CNBC", time: "8h ago", type: "deal", amount: "$40B", companies: ["Broadcom", "VMware"], summary: "Broadcom finalized the $61B VMware acquisition integration and projects annual revenue exceeding $40B." },
-  { id: "s4", title: "Arm Holdings Raises $4.8B in Secondary Offering", source: "FT", time: "1d ago", type: "funding", amount: "$4.8B", companies: ["Arm Holdings"], summary: "SoftBank sold a portion of its Arm Holdings stake in a secondary offering valued at $4.8B." },
+  { id: "s1", title: "NVIDIA Acquires Run:ai for $700M to Bolster AI Orchestration", source: "Bloomberg", time: "2026-03-03", type: "ma", amount: "$700M", companies: ["NVIDIA", "Run:ai"], summary: "NVIDIA acquired Israeli AI infrastructure startup Run:ai, adding GPU orchestration capabilities to its data center portfolio." },
+  { id: "s2", title: "Intel Foundry Services Secures $8.5B CHIPS Act Award", source: "Reuters", time: "2026-02-21", type: "deal", amount: "$8.5B", companies: ["Intel"], summary: "Intel received the largest CHIPS Act award to date for expanding domestic chip manufacturing in Arizona and Ohio." },
+  { id: "s3", title: "Broadcom Completes VMware Integration, Eyes $40B Revenue", source: "CNBC", time: "2026-02-08", type: "deal", amount: "$40B", companies: ["Broadcom", "VMware"], summary: "Broadcom finalized the $61B VMware acquisition integration and projects annual revenue exceeding $40B." },
+  { id: "s4", title: "Arm Holdings Raises $4.8B in Secondary Offering", source: "FT", time: "2026-01-18", type: "funding", amount: "$4.8B", companies: ["Arm Holdings"], summary: "SoftBank sold a portion of its Arm Holdings stake in a secondary offering valued at $4.8B." },
 ];
 
 const semiTop20: TopCompany[] = [
@@ -86,10 +86,10 @@ const fintechMovers: Company[] = [
 ];
 
 const fintechNews: NewsItem[] = [
-  { id: "f1", title: "Stripe Acquires Bridge for $1.1B to Enter Stablecoin Infrastructure", source: "TechCrunch", time: "2h ago", type: "ma", amount: "$1.1B", companies: ["Stripe", "Bridge"], summary: "Stripe's largest acquisition ever brings stablecoin orchestration capabilities, positioning the company for the crypto-native payments market." },
-  { id: "f2", title: "Visa Partners with Circle for USDC Settlement Layer", source: "Bloomberg", time: "5h ago", type: "deal", companies: ["Visa", "Circle"], summary: "Visa will begin settling select cross-border transactions using USDC stablecoin on the Solana and Ethereum networks." },
-  { id: "f3", title: "Plaid Raises $425M Series E at $15B Valuation", source: "Reuters", time: "8h ago", type: "funding", amount: "$425M", companies: ["Plaid"], summary: "Open banking infrastructure provider Plaid raised its Series E as banks increasingly adopt API-based data sharing." },
-  { id: "f4", title: "FIS Spins Off Worldpay in $18.5B Deal", source: "WSJ", time: "1d ago", type: "deal", amount: "$18.5B", companies: ["FIS", "Worldpay"], summary: "Financial technology conglomerate FIS completes the separation of its merchant acquiring business Worldpay." },
+  { id: "f1", title: "Stripe Acquires Bridge for $1.1B to Enter Stablecoin Infrastructure", source: "TechCrunch", time: "2026-03-05", type: "ma", amount: "$1.1B", companies: ["Stripe", "Bridge"], summary: "Stripe's largest acquisition ever brings stablecoin orchestration capabilities, positioning the company for the crypto-native payments market." },
+  { id: "f2", title: "Visa Partners with Circle for USDC Settlement Layer", source: "Bloomberg", time: "2026-02-24", type: "deal", companies: ["Visa", "Circle"], summary: "Visa will begin settling select cross-border transactions using USDC stablecoin on the Solana and Ethereum networks." },
+  { id: "f3", title: "Plaid Raises $425M Series E at $15B Valuation", source: "Reuters", time: "2026-02-11", type: "funding", amount: "$425M", companies: ["Plaid"], summary: "Open banking infrastructure provider Plaid raised its Series E as banks increasingly adopt API-based data sharing." },
+  { id: "f4", title: "FIS Spins Off Worldpay in $18.5B Deal", source: "WSJ", time: "2026-01-28", type: "deal", amount: "$18.5B", companies: ["FIS", "Worldpay"], summary: "Financial technology conglomerate FIS completes the separation of its merchant acquiring business Worldpay." },
 ];
 
 const fintechTop20: TopCompany[] = [
@@ -138,9 +138,9 @@ const cleanEnergyMovers: Company[] = [
 ];
 
 const cleanEnergyNews: NewsItem[] = [
-  { id: "ce1", title: "TotalEnergies Acquires SunPower Assets for $3.2B", source: "Reuters", time: "4h ago", type: "ma", amount: "$3.2B", companies: ["TotalEnergies", "SunPower"], summary: "French energy giant TotalEnergies acquired SunPower's residential solar and storage business, expanding its US clean energy footprint." },
-  { id: "ce2", title: "QuantumScape Secures $500M DOE Loan for Solid-State Battery Gigafactory", source: "Bloomberg", time: "7h ago", type: "funding", amount: "$500M", companies: ["QuantumScape"], summary: "QuantumScape received a Department of Energy loan guarantee to build its first commercial-scale solid-state battery production facility in California." },
-  { id: "ce3", title: "NextEra Energy Partners Acquires 2.5GW Wind Portfolio", source: "CNBC", time: "1d ago", type: "deal", amount: "$4.1B", companies: ["NextEra Energy"], summary: "NextEra Energy Partners closed its largest clean energy acquisition, adding 2.5 gigawatts of operating wind farms across the Midwest." },
+  { id: "ce1", title: "TotalEnergies Acquires SunPower Assets for $3.2B", source: "Reuters", time: "2026-03-01", type: "ma", amount: "$3.2B", companies: ["TotalEnergies", "SunPower"], summary: "French energy giant TotalEnergies acquired SunPower's residential solar and storage business, expanding its US clean energy footprint." },
+  { id: "ce2", title: "QuantumScape Secures $500M DOE Loan for Solid-State Battery Gigafactory", source: "Bloomberg", time: "2026-02-16", type: "funding", amount: "$500M", companies: ["QuantumScape"], summary: "QuantumScape received a Department of Energy loan guarantee to build its first commercial-scale solid-state battery production facility in California." },
+  { id: "ce3", title: "NextEra Energy Partners Acquires 2.5GW Wind Portfolio", source: "CNBC", time: "2026-01-30", type: "deal", amount: "$4.1B", companies: ["NextEra Energy"], summary: "NextEra Energy Partners closed its largest clean energy acquisition, adding 2.5 gigawatts of operating wind farms across the Midwest." },
 ];
 
 const cleanEnergyTop20: TopCompany[] = [
@@ -188,9 +188,9 @@ const cyberMovers: Company[] = [
 ];
 
 const cyberNews: NewsItem[] = [
-  { id: "cy1", title: "Palo Alto Networks Acquires Talon Cyber Security for $625M", source: "Bloomberg", time: "3h ago", type: "ma", amount: "$625M", companies: ["Palo Alto Networks", "Talon"], summary: "Palo Alto Networks acquired enterprise browser security startup Talon to strengthen its SASE and zero-trust platform." },
-  { id: "cy2", title: "CrowdStrike Expands Charlotte AI Platform with $200M R&D Investment", source: "TechCrunch", time: "6h ago", type: "deal", amount: "$200M", companies: ["CrowdStrike"], summary: "CrowdStrike is investing $200M to expand its generative AI-powered cybersecurity analyst Charlotte AI across its Falcon platform." },
-  { id: "cy3", title: "Wiz Raises $1B at $12B Valuation After Turning Down Google Acquisition", source: "Reuters", time: "1d ago", type: "funding", amount: "$1B", companies: ["Wiz"], summary: "Cloud security unicorn Wiz raised $1B in new funding after walking away from Google's $23B acquisition offer." },
+  { id: "cy1", title: "Palo Alto Networks Acquires Talon Cyber Security for $625M", source: "Bloomberg", time: "2026-03-02", type: "ma", amount: "$625M", companies: ["Palo Alto Networks", "Talon"], summary: "Palo Alto Networks acquired enterprise browser security startup Talon to strengthen its SASE and zero-trust platform." },
+  { id: "cy2", title: "CrowdStrike Expands Charlotte AI Platform with $200M R&D Investment", source: "TechCrunch", time: "2026-02-19", type: "deal", amount: "$200M", companies: ["CrowdStrike"], summary: "CrowdStrike is investing $200M to expand its generative AI-powered cybersecurity analyst Charlotte AI across its Falcon platform." },
+  { id: "cy3", title: "Wiz Raises $1B at $12B Valuation After Turning Down Google Acquisition", source: "Reuters", time: "2026-01-25", type: "funding", amount: "$1B", companies: ["Wiz"], summary: "Cloud security unicorn Wiz raised $1B in new funding after walking away from Google's $23B acquisition offer." },
 ];
 
 const cyberTop20: TopCompany[] = [
@@ -237,9 +237,9 @@ function generatePlaceholderData(sectorId: string, sectorName: string, companies
   }));
 
   const news: NewsItem[] = [
-    { id: `${sectorId}-1`, title: `Major ${sectorName} Consolidation Deal Announced`, source: "Bloomberg", time: "3h ago", type: "ma", amount: "$5.2B", companies: [companies[0].name, companies[1].name], summary: `Leading ${sectorName.toLowerCase()} players combine to create market-leading platform.` },
-    { id: `${sectorId}-2`, title: `${companies[2].name} Raises Growth Capital Round`, source: "TechCrunch", time: "6h ago", type: "funding", amount: "$800M", companies: [companies[2].name], summary: `${companies[2].name} secures funding to accelerate international expansion.` },
-    { id: `${sectorId}-3`, title: `${companies[3].name} Strategic Partnership with ${companies[4].name}`, source: "Reuters", time: "1d ago", type: "deal", companies: [companies[3].name, companies[4].name], summary: `Multi-year strategic partnership to develop next-generation solutions in ${sectorName.toLowerCase()}.` },
+    { id: `${sectorId}-1`, title: `Major ${sectorName} Consolidation Deal Announced`, source: "Bloomberg", time: "2026-02-28", type: "ma", amount: "$5.2B", companies: [companies[0].name, companies[1].name], summary: `Leading ${sectorName.toLowerCase()} players combine to create market-leading platform.` },
+    { id: `${sectorId}-2`, title: `${companies[2].name} Raises Growth Capital Round`, source: "TechCrunch", time: "2026-02-12", type: "funding", amount: "$800M", companies: [companies[2].name], summary: `${companies[2].name} secures funding to accelerate international expansion.` },
+    { id: `${sectorId}-3`, title: `${companies[3].name} Strategic Partnership with ${companies[4].name}`, source: "Reuters", time: "2026-01-20", type: "deal", companies: [companies[3].name, companies[4].name], summary: `Multi-year strategic partnership to develop next-generation solutions in ${sectorName.toLowerCase()}.` },
   ];
 
   const top20: TopCompany[] = companies.slice(0, 15).map((c, i) => ({

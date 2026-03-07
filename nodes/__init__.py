@@ -1,1 +1,0 @@
-"""Investment Radar pipeline nodes."""

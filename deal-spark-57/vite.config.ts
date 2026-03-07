@@ -53,9 +53,6 @@ function agentRunnerPlugin() {
 
         // Build command args
         const args = ["main.py"];
-        if (params.sector) {
-          args.push("--sector", params.sector);
-        }
         if (params.date) {
           args.push("--date-start", params.date);
         }
